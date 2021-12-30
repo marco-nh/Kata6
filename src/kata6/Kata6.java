@@ -4,9 +4,14 @@ import java.util.Scanner;
 import toyproducts.models.AmericanCarToy;
 import toyproducts.models.AsianCarToy;
 import factories.SerialNumberGenerator;
-import factories.regionalfactories.AmericanToyFactory;
-import factories.regionalfactories.AsianToyFactory;
+import factories.regionalfactories.AmericanCarToyFactory;
+import factories.regionalfactories.AsianCarToyFactory;
 import business.ToyBusiness;
+import factories.ToyFactory;
+import factories.regionalfactories.AmericanHelicopterToyFactory;
+import factories.regionalfactories.AsianHelicopterToyFactory;
+import java.util.HashMap;
+import java.util.Map;
 import toyproducts.Toy;
 
 public class Kata6 {
@@ -14,38 +19,30 @@ public class Kata6 {
     public static void main(String[] args) {
         String str = "";
         Scanner obj = new Scanner(System.in);
-        ToyBusiness creador;
-        System.out.println("american o asian");
-        str = obj.nextLine();
         
+        Map<String,ToyFactory> toyFactories = new HashMap<String,ToyFactory>();
         
-        //Selecionar rama
-        if (str.contentEquals("american")){
-            
-            creador = new ToyBusiness(new AmericanToyFactory());
-        } else if (str.contentEquals("asian")){
-            creador = new ToyBusiness(new AsianToyFactory());
-        } else{
-            //Default
-            creador = new ToyBusiness(new AmericanToyFactory());
-            str = "american (defecto)";
-        }
+        ToyBusiness creador = new ToyBusiness(toyFactories);
+        System.out.println("Programa: Escribe asianhelicopter, americanhelicopter, asiancar o americancar, despues, escribe asian o american, este guardara en la factoria de cada region si se ha creado un coche o un helicoptero");
         
-        System.out.println("Servidor: " + str + " ,escribe juguete");
+        creador.add("americancar", new AmericanCarToyFactory());
+        creador.add("asiancar", new AsianCarToyFactory());
+        creador.add("americanhelicopter", new AmericanHelicopterToyFactory());
+        creador.add("asianhelicopter", new AsianHelicopterToyFactory());
+        
         while(true){
             
             str = obj.nextLine();
             
             if (str.contentEquals("exit")){
                 break;
-            } else if(str.contentEquals("car")){
+            } else if (str.contentEquals("asianhelicopter") || str.contentEquals("americanhelicopter") || str.contentEquals("asiancar") || str.contentEquals("americancar")){
+
+                //creador.produceToy(str);
                 creador.produceToy(str);
-                System.out.println(creador.getToyfactory().getSerieNumber());
-                System.out.println("Coche creado");
-            } else if(str.contentEquals("helicopter")){
-                creador.produceToy(str);
-                System.out.println(creador.getToyfactory().getSerieNumber());
-                System.out.println("Helicoptero creado");
+                for (String key : creador.getToyFactory().keySet()) {
+                    System.out.println("Key => " + key + " Id => " + creador.getToyFactory().get(key).getSerieNumber());
+                }
             } else{
                 System.out.println("Command unknown!");
             }

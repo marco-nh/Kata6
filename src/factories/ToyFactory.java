@@ -2,19 +2,18 @@ package factories;
 
 
 import factories.SerialNumberGenerator;
-import factories.regionalfactories.AmericanToyFactory;
+import factories.regionalfactories.AmericanCarToyFactory;
 import toyproducts.Toy;
 import toyproducts.models.AmericanCarToy;
 import toyproducts.models.AsianCarToy;
 import toyproducts.models.AsianHelicopterToy;
 public abstract class ToyFactory {
-    SerialNumberGenerator serie = new SerialNumberGenerator();
-
+    
     public ToyFactory() {
     }
-    public abstract Toy createToy(String type);
-    public Toy produceToy(String type){
-        Toy toy = createToy(type);
+    public abstract Toy createToy(Integer serialNumber);
+    public Toy produceToy(Integer serialNumber){
+        Toy toy = createToy(serialNumber);
         toy.label();
         toy.pack();
         return toy;

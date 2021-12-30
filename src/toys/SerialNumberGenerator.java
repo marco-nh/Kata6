@@ -16,4 +16,9 @@ public class SerialNumberGenerator {
     public Integer next(){
         return ++serialNumber;
     }
+
+    public Integer getSerialNumber() {
+        return serialNumber;
+    }
+    
 }

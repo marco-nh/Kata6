@@ -3,10 +3,11 @@ package kata6;
 import java.util.Scanner;
 import toyproducts.models.AmericanCarToy;
 import toyproducts.models.AsianCarToy;
-import business.SerialNumberGenerator;
-import branches.AmericanToyBusiness;
-import branches.AsianToyBusiness;
+import factories.SerialNumberGenerator;
+import factories.regionalfactories.AmericanToyFactory;
+import factories.regionalfactories.AsianToyFactory;
 import business.ToyBusiness;
+import toyproducts.Toy;
 
 public class Kata6 {
 
@@ -20,12 +21,13 @@ public class Kata6 {
         
         //Selecionar rama
         if (str.contentEquals("american")){
-            creador = new AmericanToyBusiness();
+            
+            creador = new ToyBusiness(new AmericanToyFactory());
         } else if (str.contentEquals("asian")){
-            creador = new AsianToyBusiness();
+            creador = new ToyBusiness(new AsianToyFactory());
         } else{
             //Default
-            creador = new AmericanToyBusiness();
+            creador = new ToyBusiness(new AmericanToyFactory());
             str = "american (defecto)";
         }
         
@@ -37,13 +39,12 @@ public class Kata6 {
             if (str.contentEquals("exit")){
                 break;
             } else if(str.contentEquals("car")){
-                
-                creador.createToy(str);
-                System.out.println(creador.getSerieNumber());
+                creador.produceToy(str);
+                System.out.println(creador.getToyfactory().getSerieNumber());
                 System.out.println("Coche creado");
             } else if(str.contentEquals("helicopter")){
-                creador.createToy(str);
-                System.out.println(creador.getSerieNumber());
+                creador.produceToy(str);
+                System.out.println(creador.getToyfactory().getSerieNumber());
                 System.out.println("Helicoptero creado");
             } else{
                 System.out.println("Command unknown!");

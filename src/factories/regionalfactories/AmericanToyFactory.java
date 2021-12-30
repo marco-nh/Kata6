@@ -1,15 +1,16 @@
 
-package branches;
+package factories.regionalfactories;
 
 import business.ToyBusiness;
 import toyproducts.Toy;
 import toyproducts.models.AmericanCarToy;
 import toyproducts.models.AmericanHelicopterToy;
-import business.SerialNumberGenerator;
-public class AmericanToyBusiness extends ToyBusiness {
+import factories.SerialNumberGenerator;
+import factories.ToyFactory;
+public class AmericanToyFactory extends ToyFactory {
     SerialNumberGenerator serie = new SerialNumberGenerator();
 
-    public AmericanToyBusiness() {
+    public AmericanToyFactory() {
     }
     public Toy createToy(String type){
        Toy toy;
@@ -20,8 +21,10 @@ public class AmericanToyBusiness extends ToyBusiness {
            case "helicopter":
             toy = new AmericanHelicopterToy(serie.next(), type);
             break;
+           default:
+            toy = new AmericanHelicopterToy(-1, "fallo");
        }
-       return null;
+       return toy;
     }
     
     //comprobar, no esta en el UML

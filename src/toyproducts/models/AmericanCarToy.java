@@ -12,9 +12,11 @@ public class AmericanCarToy implements Toy {
         this.type = type;
     }
     
+    @Override
     public void pack(){
         
     }
+    @Override
     public void label(){
         
     }

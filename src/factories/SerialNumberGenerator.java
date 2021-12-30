@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package business;
+package factories;
 
 public class SerialNumberGenerator {
     Integer serialNumber;

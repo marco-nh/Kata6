@@ -3,11 +3,13 @@ package toys;
 
 public class Car {
     Integer serialNumber;
+    String type;
 
-    public Car(Integer serialNumber) {
+    public Car(Integer serialNumber, String type) {
         this.serialNumber = serialNumber;
+        this.type = type;
     }
-
+    
     public void pack(){
         
     }

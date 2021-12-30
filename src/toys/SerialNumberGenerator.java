@@ -17,6 +17,7 @@ public class SerialNumberGenerator {
         return ++serialNumber;
     }
 
+    //comprobar, no esta en el UML
     public Integer getSerialNumber() {
         return serialNumber;
     }

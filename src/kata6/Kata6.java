@@ -1,8 +1,8 @@
 package kata6;
 
 import java.util.Scanner;
-import toys.Car;
-import toys.Helicopter;
+import toyproducts.models.CarToy;
+import toyproducts.models.HelicopterToy;
 import toys.SerialNumberGenerator;
 import toys.ToyBusiness;
 
@@ -19,11 +19,11 @@ public class Kata6 {
             if (str.contentEquals("exit")){
                 break;
             } else if(str.contentEquals("car")){
-                creador.createCar();
+                creador.createToy(str);
                 System.out.println(creador.getSerieNumber());
                 System.out.println("Coche creado");
             } else if(str.contentEquals("helicopter")){
-                creador.createHelicopter();
+                creador.createToy(str);
                 System.out.println(creador.getSerieNumber());
                 System.out.println("Helicoptero creado");
             } else{
